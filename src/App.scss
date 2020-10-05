@@ -1,19 +1,24 @@
 @import './components/reset';
 @import './components/variables';
+@import './components/_mixins.scss';
 @import './components/typography';
 @import './components/doubleCargoMsg';
 @import './components/butons';
 @import './components/addItemInput';
+@import './components/shipmentList';
 
 
 .App {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     max-width: 1440px;
     min-height: 100vh;
     margin: 0 auto;
     padding: 20px;
+    @include media (small) {
+        justify-content: space-between;
+    }
 }

@@ -2,14 +2,14 @@ import React from 'react';
 
 const Button = props => {
 
-    const { text, handleClick, cssStyle } = props;
+    const { text, handleClick, cssStyle, icon } = props;
 
     return (
         <button 
             onClick={handleClick}
             className={cssStyle}
         >
-        {text}
+        <span className={icon}>{text}</span>
         </button>
     );
 };

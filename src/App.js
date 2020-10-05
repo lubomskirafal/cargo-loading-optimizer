@@ -4,6 +4,7 @@ import './App.scss';
 import DoubleCargoMsg from './components/DoubleCargoMsg';
 import AddItemInput from './components/AddItemInput';
 import Button from './components/Button';
+import ShipmentList from './components/ShipmentList';
 
 class App extends PureComponent {
   constructor (props) {
@@ -58,6 +59,10 @@ class App extends PureComponent {
     this.setState({isDouble: false});
   };
 
+  sendShipment = ()=> {
+
+  };
+
   componentDidMount () {
     //import shipment data on load
     this.setState({shipment: this.importData()})
@@ -80,9 +85,13 @@ class App extends PureComponent {
           <AddItemInput handleSubmit={createCargo}/>  
           <Button 
             cssStyle={"sendShipment"}
-            text="Wyślij transport"/>
+            text="Wyślij transport"
+            handleClick={this.sendShipment}
+            />
         </div>
         {isDouble&&<DoubleCargoMsg handleClick={this.handleDoubleCargoMsg}/>}
+
+        <ShipmentList shipment={this.state.shipment}/>
       </div>
     );
   };

@@ -39,4 +39,24 @@ button {
             background-color: red;
         }
     }
+    &.editCargo,
+    &.deleteCargo {
+        font-size: 1.2rem;
+        border: none;
+        color: blue;
+        background-color: transparent;
+        transition: color .1s, background-color .2s;
+        width: 30px;
+        &:hover {
+            color: white;
+            background-color: blue;
+        }
+    }
+    &.deleteCargo {
+        color: red;
+        &:hover {
+            color: white;
+            background-color: red;
+        }
+    }
 }

@@ -1,0 +1,45 @@
+.shipmentList {
+    width: 100%;
+    max-width: 265px;
+    margin: 10px 0 0 0 ;
+    height: 90vh;
+    overflow: auto;
+    padding: 10px;
+    box-shadow: 0 0 5px 1px black;
+    @include media (small) {
+        margin: 0 0 0 0 ;
+    }
+    &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        list-style: none;
+        
+        width: 100%;
+
+    }
+    &__item {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        width: 100%;
+        font-size: 1rem;
+        border: 1px solid black;
+        color: black;
+        padding: 0 0 0 5px;
+        word-break: break-all;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    & .buttons {
+        margin-left: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
