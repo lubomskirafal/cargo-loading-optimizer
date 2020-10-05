@@ -61,6 +61,26 @@ class App extends PureComponent {
     this.setState({isDouble: false});
   };
 
+  deleteCargo = (id)=> {
+    const shipment = this.state.shipment;
+
+    shipment.forEach(cargo => {
+
+      if(cargo.useIdNumber === id) {
+
+        const index = shipment.indexOf(cargo);
+        shipment.splice(index,1);
+
+      };
+
+    });
+
+    this.exportData(shipment);
+        
+    this.setState({shipment: this.importData()});
+
+  };
+
   sendShipment = ()=> {
 
   };
@@ -79,7 +99,7 @@ class App extends PureComponent {
 
   render () {
 
-    const {createCargo} = this;
+    const {createCargo, deleteCargo} = this;
     const {isDouble} = this.state;
     return (
       <div className="App">
@@ -94,7 +114,10 @@ class App extends PureComponent {
         </div>
         {isDouble&&<DoubleCargoMsg handleClick={this.handleDoubleCargoMsg}/>}
 
-        <ShipmentList shipment={this.state.shipment}/>
+        <ShipmentList   
+          shipment={this.state.shipment}
+          deleteCargo={deleteCargo}
+          />
       </div>
     );
   };

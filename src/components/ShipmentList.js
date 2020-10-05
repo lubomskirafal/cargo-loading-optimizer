@@ -3,7 +3,7 @@ import Button from './Button';
 
 const ShipmentList = (props)=> {
 
-    const {shipment}  = props;
+    const {shipment, deleteCargo}  = props;
 
     const cargo = shipment.map(cargo => {
         const {surfaceArea, useIdNumber, useLength, useWidth} = cargo;
@@ -26,7 +26,7 @@ const ShipmentList = (props)=> {
                     <Button
                         icon="fas fa-times" 
                         cssStyle="deleteCargo"
-
+                        handleClick={()=> deleteCargo(useIdNumber)}
                     />
                 </div>
             </li>
