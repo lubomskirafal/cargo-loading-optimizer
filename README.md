@@ -1,6 +1,6 @@
 
 # **cargo-loading-optimizer**
-## **The application is to optimize the use of space for the cargo**
+## **The application is to optimize use of space for the cargo**
 #
 
 ## **Instalation**
