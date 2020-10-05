@@ -1,0 +1,19 @@
+@import './components/reset';
+@import './components/variables';
+@import './components/typography';
+@import './components/doubleCargoMsg';
+@import './components/butons';
+@import './components/addItemInput';
+
+
+.App {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+}
