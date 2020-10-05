@@ -75,10 +75,9 @@ const AddItemInput = props => {
 
       cargo.surfaceArea = getSurfaceArea(useLength, useWidth);
 
-      props.handleSubmit(
-        cargo
-        );
-        formReset('');
+      props.handleSubmit(cargo);
+      
+      formReset('');
     
   };
 

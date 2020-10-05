@@ -7,8 +7,7 @@ const ShipmentList = (props)=> {
 
     const cargo = shipment.map(cargo => {
         const {surfaceArea, useIdNumber, useLength, useWidth} = cargo;
-
-        console.log(cargo)
+        
         return (
             <li
                 key={useIdNumber}

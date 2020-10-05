@@ -24,33 +24,35 @@ class App extends PureComponent {
     return shipment;
   };
 
-  exportData = ()=> {
+  exportData = (shipment)=> {
     //export shipment to lacal storage
-    const shipment = this.state.shipment;
     
     localStorage.setItem('shipment', JSON.stringify(shipment));
   };
 
   createCargo = (newCargo)=> {
     //create an object for each cargo with cargo , and render data.
-    const shipment = this.state.shipment;
+    
+    const newShipment = this.state.shipment;
      
-    if(shipment.length > 0) {
-      shipment.forEach(cargo => {
-        if(cargo.useIdNumber === newCargo.useIdNumber){
-          this.setState({isDouble: true});
-          return ;
-        }else {
-          shipment.push(newCargo);
-        }
-      });
-    }else {
-      shipment.push(newCargo);
-    };
+    if(newShipment.length > 0) {
 
-    this.setState({
-      shipment
-    }, this.exportData());
+          newShipment.forEach(cargo => {
+
+            if(cargo.useIdNumber === newCargo.useIdNumber) return this.setState({isDouble: true});
+
+              });
+
+            newShipment.push(newCargo);
+        }else {
+
+          newShipment.push(newCargo);
+          
+        };
+
+        this.exportData(newShipment);
+        
+        this.setState({shipment: this.importData()});
       
   };
 
@@ -62,15 +64,16 @@ class App extends PureComponent {
   sendShipment = ()=> {
 
   };
+  
 
   componentDidMount () {
     //import shipment data on load
-    this.setState({shipment: this.importData()})
+    
+    this.setState({shipment: this.importData()});
   };
 
   componentDidUpdate () {
-    console.log('component did update')
-    console.log(this.state.shipment)
+    
   };
   
 
