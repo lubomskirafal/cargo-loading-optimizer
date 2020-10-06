@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import getSurfaceArea from './components/getSurfaceArea';
 import './App.scss';
 
 import DoubleCargoMsg from './components/DoubleCargoMsg';
@@ -13,7 +14,9 @@ class App extends PureComponent {
     this.state = {
       shipment: [],
       isDouble: false,
-      freightCarArea: 36, //m2
+      freightCarWidth: 2.8,
+      freightCarLength: 12.7,
+      freightCarArea: 0, //m2
       freightCarNumber: 0,
     };
   };
@@ -85,7 +88,7 @@ class App extends PureComponent {
   sendShipment = ()=> {
     
     const shipment = this.state.shipment;
-    const freightCarArea = this.state.freightCarArea;
+    const freightCarArea = getSurfaceArea(this.state.freightCarLength, this.state.freightCarWidth);
     let freightCarNumber = this.state.freightCarNumber;
     let cargoTotalArea = 0;
     

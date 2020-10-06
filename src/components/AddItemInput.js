@@ -1,5 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
+import getSurfaceArea from './getSurfaceArea';
 import Button from './Button';
 
 const AddItemInput = props => {
@@ -33,13 +34,6 @@ const AddItemInput = props => {
   const [useErrorLength, setErrorLength] = useState(false);
   const [useErrorWidth, setErrorWidth] = useState(false);
   const [useErrorWeight, setErrorWeight] = useState(false);
-
-  const getSurfaceArea = (length, width)=> {
-    
-    const surfaceArea = length * width;
-
-    return surfaceArea;
-  };
 
   const cargo = {
     useIdNumber, 
