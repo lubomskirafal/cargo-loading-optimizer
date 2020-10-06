@@ -13,7 +13,8 @@ class App extends PureComponent {
     this.state = {
       shipment: [],
       isDouble: false,
-      
+      freightCarArea: 36, //m2
+      freightCarNumber: 0,
     };
   };
 
@@ -82,6 +83,18 @@ class App extends PureComponent {
   };
 
   sendShipment = ()=> {
+    
+    const shipment = this.state.shipment;
+    const freightCarArea = this.state.freightCarArea;
+    let freightCarNumber = this.state.freightCarNumber;
+    let cargoTotalArea = 0;
+    
+
+    shipment.forEach(cargo=> cargoTotalArea += cargo.surfaceArea );
+    
+    freightCarNumber = Math.ceil(cargoTotalArea / freightCarArea);
+
+    console.log(freightCarNumber)
 
   };
   
