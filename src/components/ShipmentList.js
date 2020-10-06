@@ -5,6 +5,8 @@ const ShipmentList = (props)=> {
 
     const {shipment, deleteCargo}  = props;
 
+    shipment.sort((a,b)=> a.useIdNumber - b.useIdNumber);
+
     const cargo = shipment.map(cargo => {
         const {surfaceArea, useIdNumber, useLength, useWidth} = cargo;
         
