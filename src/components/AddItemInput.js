@@ -40,7 +40,8 @@ const AddItemInput = props => {
     useLength, 
     useWidth, 
     useWeight,
-    surfaceArea: 0
+    surfaceArea: 0,
+    isLoaded: false
   }
 
   const formReset = value => {

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import getSurfaceArea from './components/getSurfaceArea';
+import permutations from './components/permutations';
 import './App.scss';
 
 import DoubleCargoMsg from './components/DoubleCargoMsg';
@@ -18,6 +19,7 @@ class App extends PureComponent {
       freightCarLength: 12.7,
       freightCarArea: 0, //m2
       freightCarNumber: 0,
+      freightCars: [],
     };
   };
 
@@ -88,17 +90,20 @@ class App extends PureComponent {
   sendShipment = ()=> {
     
     const shipment = this.state.shipment;
-    const freightCarArea = getSurfaceArea(this.state.freightCarLength, this.state.freightCarWidth);
-    let freightCarNumber = this.state.freightCarNumber;
-    let cargoTotalArea = 0;
+    // let freightCarArea = getSurfaceArea(this.state.freightCarLength, this.state.freightCarWidth);
+    // let newFreightCars = this.state.freightCars;
+    // let freightCarNumber = this.state.freightCarNumber;
+    // let cargoTotalArea = 0;
     
 
-    shipment.forEach(cargo=> cargoTotalArea += cargo.surfaceArea );
+    // shipment.forEach(cargo=> cargoTotalArea += cargo.surfaceArea );
     
-    freightCarNumber = Math.ceil(cargoTotalArea / freightCarArea);
+    // freightCarNumber = Math.ceil(cargoTotalArea / freightCarArea);
+    
+    
 
-    console.log(freightCarNumber)
-
+    console.log(permutations(shipment));
+    
   };
   
 
