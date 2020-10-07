@@ -1,5 +1,8 @@
 const permutations = (arr)=> {
     const results = [];
+    
+    if(arr.length === 0) return [];
+    if(arr.length === 1) return arr;
 
     for(let i = 0; i< arr.length; i++) {
       const result = permutations(arr.slice(0, i).concat(arr.slice(i+1)));
@@ -14,6 +17,6 @@ const permutations = (arr)=> {
     };
 
     return results;
-  };
+};
 
 export default permutations;

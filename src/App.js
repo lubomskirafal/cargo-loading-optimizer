@@ -18,7 +18,6 @@ class App extends PureComponent {
       freightCarWidth: 2.8,
       freightCarLength: 12.7,
       freightCarArea: 0, //m2
-      freightCarNumber: 0,
       freightCars: [],
     };
   };
@@ -88,21 +87,77 @@ class App extends PureComponent {
   };
 
   sendShipment = ()=> {
+    const cars = [];//final array contains all cars with loading setup
+    const shipment = this.state.shipment;//shipment list
+    //calc surface area of freight car
+    const freightCarArea = getSurfaceArea(this.state.freightCarLength, this.state.freightCarWidth);
+    let cargoTotalArea = 0;
+    //get total cargo surface 
+    shipment.forEach(cargo=> cargoTotalArea += cargo.surfaceArea );
+    //determ required number of cars
+    const newFreightCarNumber = Math.ceil(cargoTotalArea / freightCarArea);
     
-    const shipment = this.state.shipment;
-    // let freightCarArea = getSurfaceArea(this.state.freightCarLength, this.state.freightCarWidth);
-    // let newFreightCars = this.state.freightCars;
-    // let freightCarNumber = this.state.freightCarNumber;
-    // let cargoTotalArea = 0;
-    
+    for(let i = 0; i< newFreightCarNumber; i++) {
+      // loop for each cargo car
+      
+      const shipments = permutations(shipment);
+      const newShipments = [];//contain all permutations loading simulations per car
+      let newShipment = [];//contain loading simulation for each permutation
 
-    // shipment.forEach(cargo=> cargoTotalArea += cargo.surfaceArea );
-    
-    // freightCarNumber = Math.ceil(cargoTotalArea / freightCarArea);
-    
-    
+      shipments.forEach(shipment => {
+      //loop for each cargo permutation to simulate car loading
+        let carArea = freightCarArea;
+        newShipment = [];
 
-    console.log(permutations(shipment));
+        shipment.forEach(cargo => {
+            //check hav many items can be loaded to car for each permutation
+          if(cargo.surfaceArea <= carArea) {
+            //load items to the car until total surface area is <= car surface area
+            carArea -= cargo.surfaceArea;
+            newShipment.push(cargo);
+
+          };
+          
+        });
+       //return arr of simulated loaded cargo for each permutation, and push to general array
+        newShipments.push(newShipment);
+      });
+    
+      newShipments.sort((shipmantA, shipmantB)=> {
+        //determ which loading simulation is most efficient
+        let areaA = 0;
+        shipmantA.forEach(cargo => areaA += cargo.surfaceArea);
+
+        let areaB = 0;
+        shipmantB.forEach(cargo => areaB += cargo.surfaceArea);
+
+        return areaB - areaA;
+      });
+
+      //get the most efficiant loading setup
+      const loadedCargo = newShipments[0];
+
+      shipment.forEach(cargo => {
+        //identify loaded items in main list and delete
+        loadedCargo.forEach(item=>{
+          
+          if(cargo.useIdNumber === item.useIdNumber) {
+
+            const index = shipment.indexOf(cargo);
+            shipment.splice(index,1);
+
+          };
+
+        });
+
+      });
+
+      console.log(loadedCargo)
+      //push final loading setup per car to general list
+      cars.push(loadedCargo);
+    };
+    //final loading setup
+    this.setState({freightCars: cars});
     
   };
   
