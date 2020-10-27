@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 
 import CardSelect from './CardSelect';
+import ContainerSelect from './ContainerSelect';
 import Button from './Button';
 
 const AddItemInput = props => {
@@ -51,6 +52,7 @@ const AddItemInput = props => {
           
           >
           <CardSelect />
+          <ContainerSelect />
         </form>
     );
 };
